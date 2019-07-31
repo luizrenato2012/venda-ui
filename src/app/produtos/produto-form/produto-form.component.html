@@ -1,0 +1,30 @@
+<div class="container">
+  <h3>{{tipoAlteracao}} Produto</h3>
+
+  <form #frm_produto="ngForm" autocomplete="off" (submit)="grava(frm_produto)">
+    <div class="form-group">
+      <label>Descrição</label>
+      <input type="text" name="descricao" class="form-control" required
+        ngModel #descricao="ngModel" [(ngModel)]="produto.descricao" (blur)="limpaMensagem()"/>
+        <div class="erro"  *ngIf="descricao.dirty && descricao.hasError('required')">
+          Digite uma descrição válida
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Preço</label>
+        <input type="text" name="preco" class="form-control" required
+         ngModel #preco="ngModel" [(ngModel)]="produto.preco" (blur)="limpaMensagem()"/>
+         <div class="erro"  *ngIf="preco.dirty && preco.hasError('required')">
+          Digite um preco válido
+        </div>
+    </div>
+
+    <div class="btn-group">
+        <button type="submit" class="btn btn-primary" [disabled]="!frm_produto.valid">Grava</button>
+        <a routerLink="/produtos/lista" class="btn btn-secundary">Volta</a>
+    </div>
+    <br>
+  </form>
+  <app-mensagens [texto]="texto" *ngIf="texto != ''"></app-mensagens>
+</div>

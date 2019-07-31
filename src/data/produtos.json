@@ -1,0 +1,24 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "descricao": "Celuluar Nokia 2222",
+      "preco": 120
+    },
+    {
+      "id": 2,
+      "descricao": "Celuluar Nokia 3222",
+      "preco": 125
+    },
+    {
+      "id": 3,
+      "descricao": "Celuluar Sansung 9580",
+      "preco": 125
+    },
+    {
+      "descricao": "Teclado USB",
+      "preco": "25",
+      "id": 4
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th class="header1">Descrição</th>
+        <th class="header2">Preço</th>
+        <th class="header2">X</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let produto of produtos">
+        <td>{{produto.descricao}}</td>
+        <td>{{produto.preco}}</td>
+        <td><input type="radio" name="selecionado" (click)="seleciona(produto)"/></td>
+      </tr>
+    </tbody>
+  </table>

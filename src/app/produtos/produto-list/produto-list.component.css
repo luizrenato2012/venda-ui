@@ -1,0 +1,19 @@
+.btn-outline-secondary {
+  color: white;
+  background-color: #007BFF;
+}
+.table thead th.header1 {
+  width: 80%;
+}
+
+.table thead th.header2 {
+  width: 60%;
+}
+
+.btn-primary, .btn-danger, .btn-success {
+  margin-right : 5px;
+}
+
+.container {
+  margin-top: 10px;
+}

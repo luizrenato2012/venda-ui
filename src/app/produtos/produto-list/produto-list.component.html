@@ -1,0 +1,18 @@
+<div class="container">
+  <h3>Pesquisa Produtos</h3>
+  <div>
+    <app-mensagens [texto]="mensagem"></app-mensagens>
+  <div class="input-group mb-3">
+    <input type="text" name="argumento" class="form-control" placeholder="Digite uma descrição" [(ngModel)]="argumento"/>
+    <button class="btn btn-outline-secondary" type="button" (click)="pesquisa()">Pesquisa</button>
+  </div>
+
+  <app-produto-table [produtos]="produtos"
+    (produtoSelecionado)="produtoRecebido($event)"></app-produto-table>
+  <br>
+  <div>
+    <button class="btn btn-primary"  [disabled]="produtoEdicao==null" [routerLink]="urlEdicao">Altera</button>
+    <button class="btn btn-danger" (click)="exclui()" [disabled]="produtoEdicao==null">Exclui</button>
+    <a class="btn btn-success" routerLink="/produtos/novo">Novo</a>
+  </div>
+</div>
