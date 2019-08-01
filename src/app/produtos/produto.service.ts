@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PromiseState } from 'q';
@@ -11,10 +12,13 @@ export class ProdutoService {
 
   constructor(private httpClient: HttpClient) { }
 
-  adiciona(produto: any) : Promise<any> {
+  grava(produto: any) : Observable<any> {
     console.log(`adiciona ${produto}`);
-    return this.httpClient.post(this.url, produto)
-      .toPromise();
+    if (produto.id!=null && produto.id!=undefined) {
+     return this.httpClient.put(this.url+"/"+ produto.id, produto);
+    } else {
+      return this.httpClient.post(this.url, produto);
+    }
   }
 
   listaTodos() : Promise<any> {
@@ -35,8 +39,9 @@ export class ProdutoService {
 
   }
 
-  encontra(id:number) {
-    return this.httpClient.get(this.url +"/"+ id)
-      .toPromise();
+  encontra(id: number): Observable<any>{
+    // return this.httpClient.get(this.url +"/"+ id)
+    //   .toPromise();
+    return this.httpClient.get(this.url+"/"+ id);
   }
 }

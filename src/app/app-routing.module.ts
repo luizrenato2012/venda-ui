@@ -14,8 +14,9 @@ const routes : Routes = [
     id : ProdutoResolver
   }
   },
-  {path: 'produtos/lista', component: ProdutoListComponent},
-  {path: 'produtos/home', component: HomeComponent}
+  { path: 'produtos/lista', component: ProdutoListComponent },
+  { path: 'produtos/home', component: HomeComponent },
+  { path: '', redirectTo: '/produtos/home', pathMatch: 'full'},
 ];
 
 @NgModule({

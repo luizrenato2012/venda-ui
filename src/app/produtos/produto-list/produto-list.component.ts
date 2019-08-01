@@ -19,7 +19,6 @@ export class ProdutoListComponent {
   pesquisa() {
     this.produtoService.pesquisa(this.argumento)
       .then(retorno=> {
-        console.log('>> retornando');
         this.produtos = retorno;
         this.mensagem =`Encontrado(s) ${this.produtos.length} produtos`;
         this.produtoEdicao= null;

@@ -15,27 +15,30 @@ export class ProdutoFormComponent  implements OnInit {
   private tipoAlteracao= "";
   private texto = "";
 
-  constructor(private produtoService: ProdutoService, private activatedRoute?: ActivatedRoute) {
-    if (activatedRoute) {
-      this.produto = this.activatedRoute.snapshot.data.produto;
-    } else {
-      this.produto= {};
-    }
-  }
+  constructor(private produtoService: ProdutoService, private activatedRoute?: ActivatedRoute) {}
 
   ngOnInit(): void {
-   this.tipoAlteracao= this.produto==null || this.produto.id==null ? "Inclui" : "Altera";
+    if (this.activatedRoute) {
+      console.log(`>>> recebendo produto da rota ${JSON.stringify( this.activatedRoute.snapshot.data)}`);
+      this.produto = this.activatedRoute.snapshot.data.id;
+      console.log(`produto ${JSON.stringify(this.produto)}`);
+    } else {
+      console.log('Sem objeto passado');
+      this.produto= {};
+    }
+    this.tipoAlteracao= this.produto==null || this.produto.id==null ? "Inclui" : "Altera ";
   }
 
   grava(form: NgForm) {
-    this.produtoService.adiciona(this.produto)
-      .then( ()=>{
+    this.produtoService.grava(this.produto)
+      .subscribe( (retorno) =>{
           console.log('Produto adicionado com sucesso');
           this.texto= "Produto cadastrado com sucesso!!!";
           this.produtoService.listaTodos()
             .then(retorno => console.log(`${JSON.stringify(retorno)}`));
-       }).catch( error => {
-        console.log(`erro ao adicionar ${error}`);
+       },
+       (error) => {
+         console.log(`erro ao adicionar ${error}`);
        });
 
     console.log(`${JSON.stringify(this.produtoService.listaTodos())}`);
