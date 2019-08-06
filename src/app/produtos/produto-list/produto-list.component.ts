@@ -33,19 +33,26 @@ export class ProdutoListComponent {
       alert('Selecione um produto!');
       return;
     }
-
-    if (confirm(`Deseja excluir o registros selecionado ? ${JSON.stringify(this.produtoEdicao)}`)) {
-      this.mensagem= "Produto excluido com sucesso!";
-      this.produtoService.exclui(this.produtoEdicao.id);
+    console.log('>>> Excluindo ');
+    if (confirm(`Deseja excluir ${JSON.stringify(this.produtoEdicao.descricao)}?`)) {
+      this.produtoService.exclui(this.produtoEdicao.id)
+        .subscribe( () => {
+                        this.mensagem= "Produto excluido com sucesso!";
+                        this.pesquisa();
+                    }, 
+                    (error) => {
+                        console.log(`Erro ao excluir produto:; ${JSON.stringify(error)}`);
+                        this.mensagem="Erro ao excluir produto";
+                    });
+      
     } else {
-      this.mensagem= "Rejeitada  exclusao";
+      this.mensagem= "";
     }
   }
 
   produtoRecebido(valor: any) {
     this.produtoEdicao = valor;
     this.urlEdicao= `/produtos/edita/${this.produtoEdicao.id}`;
-    console.log("URL " + this.urlEdicao)
   }
 
 }

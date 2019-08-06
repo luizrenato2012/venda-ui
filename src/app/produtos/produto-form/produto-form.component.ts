@@ -18,15 +18,15 @@ export class ProdutoFormComponent  implements OnInit {
   constructor(private produtoService: ProdutoService, private activatedRoute?: ActivatedRoute) {}
 
   ngOnInit(): void {
-    if (this.activatedRoute) {
+    if (this.activatedRoute.snapshot.data.produto != undefined ) {
       console.log(`>>> recebendo produto da rota ${JSON.stringify( this.activatedRoute.snapshot.data)}`);
-      this.produto = this.activatedRoute.snapshot.data.id;
+      this.produto = this.activatedRoute.snapshot.data.produto;
       console.log(`produto ${JSON.stringify(this.produto)}`);
     } else {
-      console.log('Sem objeto passado');
+      console.log('Inclusao de produto');
       this.produto= {};
     }
-    this.tipoAlteracao= this.produto==null || this.produto.id==null ? "Inclui" : "Altera ";
+    this.tipoAlteracao= this.produto==null || this.produto.id==null ? "Inclui " : "Altera ";
   }
 
   grava(form: NgForm) {

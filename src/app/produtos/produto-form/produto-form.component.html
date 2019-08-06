@@ -1,6 +1,6 @@
 <div class="container">
   <h3>{{tipoAlteracao}} Produto</h3>
-
+  <app-mensagens [texto]="texto" *ngIf="texto != ''"></app-mensagens>
   <form #frm_produto="ngForm" autocomplete="off" (submit)="grava(frm_produto)">
     <div class="form-group">
       <label>Descrição</label>
@@ -26,5 +26,4 @@
     </div>
     <br>
   </form>
-  <app-mensagens [texto]="texto" *ngIf="texto != ''"></app-mensagens>
 </div>

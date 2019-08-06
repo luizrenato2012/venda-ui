@@ -29,19 +29,15 @@ export class ProdutoService {
   pesquisa(descricao: string): Promise<any> {
     let urlFinal= (descricao==='' || descricao === undefined) ?
       this.url : this.url +"?descricao="+descricao;
-    console.log(urlFinal);
     return this.httpClient.get(urlFinal)
       .toPromise();
   }
 
   exclui(id: number) {
-    return this.httpClient.delete(this.url)
-
+    return this.httpClient.delete(this.url+"/"+ id);
   }
 
   encontra(id: number): Observable<any>{
-    // return this.httpClient.get(this.url +"/"+ id)
-    //   .toPromise();
     return this.httpClient.get(this.url+"/"+ id);
   }
 }

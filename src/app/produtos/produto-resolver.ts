@@ -12,7 +12,7 @@ export class ProdutoResolver implements Resolve<Observable<any>> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) :  Observable<any> {
     const id = route.params.id;
-    console.log('>> resolver id ' + id);
+    console.log('>> resolver produto ' + id);
     // return this.produtoService.encontra(id)
     //   .then(retorno =>  {console.log('retorno \n' + JSON.stringify(retorno)); retorno});
     return this.produtoService.encontra(id);
