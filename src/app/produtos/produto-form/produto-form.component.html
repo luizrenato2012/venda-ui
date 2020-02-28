@@ -6,18 +6,20 @@
       <label>Descrição</label>
       <input type="text" name="descricao" class="form-control" required
         ngModel #descricao="ngModel" [(ngModel)]="produto.descricao" (blur)="limpaMensagem()"/>
-        <div class="erro"  *ngIf="descricao.dirty && descricao.hasError('required')">
-          Digite uma descrição válida
-        </div>
+        <app-mensagem-validacao 
+            [texto] = "'Digite uma descrição válida'"
+            *ngIf = "descricao.dirty && descricao.hasError('required')">
+        </app-mensagem-validacao>
     </div>
 
     <div class="form-group">
         <label>Preço</label>
         <input type="text" name="preco" class="form-control" required
          ngModel #preco="ngModel" [(ngModel)]="produto.preco" (blur)="limpaMensagem()"/>
-         <div class="erro"  *ngIf="preco.dirty && preco.hasError('required')">
-          Digite um preco válido
-        </div>
+        <app-mensagem-validacao
+            [texto]="' Digite um preco válido'"
+            *ngIf="preco.dirty && preco.hasError('required')" >
+        </app-mensagem-validacao>
     </div>
 
     <div class="btn-group">
