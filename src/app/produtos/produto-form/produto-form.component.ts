@@ -27,6 +27,7 @@ export class ProdutoFormComponent  implements OnInit {
 
   private criaForm() {
     this.formProduto = this.formBuilder.group({
+      id: [0],
       descricao : ['', Validators.required],
       preco : ['', Validators.required]
     });
@@ -35,9 +36,10 @@ export class ProdutoFormComponent  implements OnInit {
 
   private preencheCampos() {
     let produto = this.activatedRoute.snapshot.data.produto != undefined ?
-      this.activatedRoute.snapshot.data.produto : {descricao:'', preco: ''};
+      this.activatedRoute.snapshot.data.produto : {descricao:'', preco: '', id:''};
     this.formProduto.setValue(produto);
-    this.tipoAlteracao= (produto==null || produto.id==null) ? "Inclui " : "Altera ";
+    this.tipoAlteracao= (produto==null || produto.id==null || produto.id==0) ?
+      "Inclui " : "Altera ";
   }
 
   grava() {

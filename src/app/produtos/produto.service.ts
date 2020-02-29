@@ -13,8 +13,8 @@ export class ProdutoService {
   constructor(private httpClient: HttpClient) { }
 
   grava(produto: any) : Observable<any> {
-    console.log(`adiciona ${produto}`);
-    if (produto.id!=null && produto.id!=undefined) {
+    // console.log(`adiciona ${produto}`);
+    if ((produto.id!=null || produto.id==0) && produto.id!=undefined) {
      return this.httpClient.put(this.url+"/"+ produto.id, produto);
     } else {
       return this.httpClient.post(this.url, produto);

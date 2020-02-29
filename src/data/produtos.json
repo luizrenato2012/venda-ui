@@ -29,6 +29,16 @@
       "descricao": "Teclado notebook",
       "preco": "23",
       "id": 10
+    },
+    {
+      "descricao": "Mousr Logitech",
+      "preco": "55",
+      "id": 11
+    },
+    {
+      "descricao": "Limpador de tela",
+      "preco": "25",
+      "id": 12
     }
   ]
 }
