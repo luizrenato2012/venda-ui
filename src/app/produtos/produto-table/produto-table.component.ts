@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChange, Output } from '@angular/core';
-import { EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, SimpleChange, Output } from '@angular/core';
 
 @Component({
   selector: 'app-produto-table',
@@ -14,23 +13,17 @@ export class ProdutoTableComponent implements OnChanges {
   @Output()
   produtoSelecionado = new EventEmitter();
 
-  constructor() {
-
-  }
+  constructor() { }
 
   ngOnChanges(changes: {[propName: string] : SimpleChange}): void {
-    // console.log('debug');
-    // console.log(`prop ${JSON.stringify(changes)}`);
     let lista = changes.produtos.currentValue;
     lista.forEach(produto => {
       produto.selecionado = produto.selecionado==null ? false :  produto.selecionado;
     });
   }
 
-
   seleciona(produto: any) {
     this.produtoSelecionado.emit(produto);
   }
-
 
 }

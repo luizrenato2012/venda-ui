@@ -2,7 +2,7 @@ import { Produto } from './../produto';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ProdutoService } from '../produto.service';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-produto-form',
@@ -11,40 +11,49 @@ import { NgForm } from '@angular/forms';
 })
 export class ProdutoFormComponent  implements OnInit {
 
-  private produto : any = {};
   private tipoAlteracao= "";
   private texto = "";
 
-  constructor(private produtoService: ProdutoService, private activatedRoute?: ActivatedRoute) {}
+  private formProduto : FormGroup;
+
+  constructor(private produtoService: ProdutoService,
+              private formBuilder : FormBuilder,
+              private activatedRoute?: ActivatedRoute) {}
 
   ngOnInit(): void {
-    if (this.activatedRoute.snapshot.data.produto != undefined ) {
-      console.log(`>>> recebendo produto da rota ${JSON.stringify( this.activatedRoute.snapshot.data)}`);
-      this.produto = this.activatedRoute.snapshot.data.produto;
-      console.log(`produto ${JSON.stringify(this.produto)}`);
-    } else {
-      console.log('Inclusao de produto');
-      this.produto= {};
-    }
-    this.tipoAlteracao= this.produto==null || this.produto.id==null ? "Inclui " : "Altera ";
+    this.criaForm();
+   this.preencheCampos();
   }
 
-  grava(form: NgForm) {
-    this.produtoService.grava(this.produto)
-      .subscribe( (retorno) =>{
-          console.log('Produto adicionado com sucesso');
+  private criaForm() {
+    this.formProduto = this.formBuilder.group({
+      descricao : ['', Validators.required],
+      preco : ['', Validators.required]
+    });
+    this.formProduto.dirty
+  }
+
+  private preencheCampos() {
+    let produto = this.activatedRoute.snapshot.data.produto != undefined ?
+      this.activatedRoute.snapshot.data.produto : {descricao:'', preco: ''};
+    this.formProduto.setValue(produto);
+    this.tipoAlteracao= (produto==null || produto.id==null) ? "Inclui " : "Altera ";
+  }
+
+  grava() {
+    let produto = {descricao : this.formProduto.get('descricao').value, 
+                   preco : this.formProduto.get('preco').value};
+    this.produtoService.grava(produto)
+      .subscribe(retorno => {
           this.texto= "Produto cadastrado com sucesso!!!";
           this.produtoService.listaTodos()
             .then(retorno => console.log(`${JSON.stringify(retorno)}`));
+            this.formProduto.reset();
        },
-       (error) => {
+        error => {
          console.log(`erro ao adicionar ${error}`);
+         this.texto = "Erro ao gravar";
        });
-
-    console.log(`${JSON.stringify(this.produtoService.listaTodos())}`);
-    this.produto = {};
-    form.reset();
-
   }
 
   limpaMensagem() {

@@ -5,12 +5,6 @@ import { CommonModule } from "@angular/common";
 import { NavegacaoModule } from "./navegacao/navegacao.module";
 
 @NgModule({
-    // declarations : [
-    //     MensagensModule
-    // ],
-    // imports : [
-    //     MensagensModule
-    // ],
      exports: [
          MensagensModule,
          NavegacaoModule

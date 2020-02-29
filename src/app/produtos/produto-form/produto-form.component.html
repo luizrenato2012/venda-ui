@@ -1,29 +1,35 @@
 <div class="container">
   <h3>{{tipoAlteracao}} Produto</h3>
-  <app-mensagens [texto]="texto" *ngIf="texto != ''"></app-mensagens>
-  <form #frm_produto="ngForm" autocomplete="off" (submit)="grava(frm_produto)">
+  <app-mensagens [texto]="texto" *ngIf="texto != ''">
+  </app-mensagens>
+
+  <form [formGroup]="formProduto" autocomplete="off" (submit)="grava()">
     <div class="form-group">
       <label>Descrição</label>
-      <input type="text" name="descricao" class="form-control" required
-        ngModel #descricao="ngModel" [(ngModel)]="produto.descricao" (blur)="limpaMensagem()"/>
-        <app-mensagem-validacao 
-            [texto] = "'Digite uma descrição válida'"
-            *ngIf = "descricao.dirty && descricao.hasError('required')">
+      <input type="text" 
+        formControlName="descricao" 
+        class="form-control" 
+        (blur)="limpaMensagem()"/>
+      <app-mensagem-validacao 
+        *ngIf = "formProduto.get('descricao').errors?.required && formProduto.dirty"  
+         [texto] = "'Digite uma descrição válida'">
         </app-mensagem-validacao>
     </div>
 
     <div class="form-group">
         <label>Preço</label>
-        <input type="text" name="preco" class="form-control" required
-         ngModel #preco="ngModel" [(ngModel)]="produto.preco" (blur)="limpaMensagem()"/>
+        <input type="text" 
+          formControlName="preco"
+          class="form-control" 
+          (blur)="limpaMensagem()"/>
         <app-mensagem-validacao
-            [texto]="' Digite um preco válido'"
-            *ngIf="preco.dirty && preco.hasError('required')" >
+          *ngIf="formProduto.get('preco').errors?.required && formProduto.dirty"   
+          [texto]="' Digite um preco válido'">
         </app-mensagem-validacao>
     </div>
 
     <div class="btn-group">
-        <button type="submit" class="btn btn-primary" [disabled]="!frm_produto.valid">Grava</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!formProduto.valid">Grava</button>
         <a routerLink="/produtos/lista" class="btn btn-secundary">Volta</a>
     </div>
     <br>

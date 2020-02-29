@@ -1,16 +1,6 @@
 {
   "produtos": [
     {
-      "id": 1,
-      "descricao": "Celular Nokia 2222",
-      "preco": 120
-    },
-    {
-      "id": 2,
-      "descricao": "Celular Nokia 3222 ",
-      "preco": 125
-    },
-    {
       "descricao": "Teclado USB",
       "preco": "45",
       "id": 5
@@ -19,6 +9,26 @@
       "descricao": "Mouse USB Logitec",
       "preco": "1234",
       "id": 6
+    },
+    {
+      "descricao": "Calça Jeans",
+      "preco": "34",
+      "id": 7
+    },
+    {
+      "descricao": "Fonte Aimentação notebook",
+      "preco": "23",
+      "id": 8
+    },
+    {
+      "descricao": "Mousr Logitech",
+      "preco": "45",
+      "id": 9
+    },
+    {
+      "descricao": "Teclado notebook",
+      "preco": "23",
+      "id": 10
     }
   ]
 }
