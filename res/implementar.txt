@@ -1,0 +1,7 @@
+Funcionalidades a Implementar
+
+ - Produto - Novo - validar no back end se a descrição do produto já existe
+ - Tela de Login - criar
+ - Barra de Navegacao colocar um label com nome do usuário e um link para logout.
+ - Cria rotas filhas para produto com barra de navegação.
+ - Colocar módulo Produtos com lazy.
